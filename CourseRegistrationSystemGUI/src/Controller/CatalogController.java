@@ -35,12 +35,11 @@ public class CatalogController implements ActionListener {
     /**
      * Constructor to initialize the catalog controller
      * @param interfaceView Views for the login and main menu windows
-     * @param catalogView Views for the associated catalog windows
      */
-    public CatalogController(InterfaceView interfaceView, CatalogView catalogView) {
+    public CatalogController(InterfaceView interfaceView) {
         this.catalog = new CourseCatalog();
         this.interfaceView = interfaceView;
-        this.catalogView = catalogView;
+        this.catalogView = new CatalogView();
 
         // Add action listeners to the catalog views
         this.catalogView.getSearchCatalogWindow().addActionListeners(this);
@@ -130,5 +129,13 @@ public class CatalogController implements ActionListener {
      */
     public CourseCatalog getCatalog() {
         return this.catalog;
+    }
+
+    /**
+     * Getter that retrieves the catalog view
+     * @return the catalog view
+     */
+    public CatalogView getCatalogView() {
+        return catalogView;
     }
 }

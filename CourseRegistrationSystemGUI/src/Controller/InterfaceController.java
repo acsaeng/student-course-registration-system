@@ -20,16 +20,6 @@ public class InterfaceController implements ActionListener {
     private InterfaceView interfaceView;
 
     /**
-     * Views for the associated student windows
-     */
-    private StudentView studentView;
-
-    /**
-     * Views for the associated catalog windows
-     */
-    private CatalogView catalogView;
-
-    /**
      * Controller for the associated catalog objects
      */
     private CatalogController catalogController;
@@ -44,15 +34,13 @@ public class InterfaceController implements ActionListener {
      */
     public InterfaceController() {
         this.interfaceView = new InterfaceView();
-        this.studentView = new StudentView();
-        this.catalogView = new CatalogView();
 
         // Add action listeners to the login and main menu windows
         this.interfaceView.getLoginWindow().addActionListeners(this);
         this.interfaceView.getMainMenuWindow().addActionListeners(this);
 
-        this.catalogController = new CatalogController(this.interfaceView, this.catalogView);
-        this.studentController = new StudentController(this.catalogController, this.interfaceView, this.studentView);
+        this.catalogController = new CatalogController(this.interfaceView);
+        this.studentController = new StudentController(this.catalogController, this.interfaceView);
 
         // Begin by opening the login window
         this.interfaceView.getLoginWindow().activate();
@@ -99,28 +87,28 @@ public class InterfaceController implements ActionListener {
         if (evt.getSource() == this.interfaceView.getMainMenuWindow().getSearchCatalogButton()) {
             // Open the search catalog window
             this.interfaceView.getMainMenuWindow().deactivate();
-            this.catalogView.getSearchCatalogWindow().activate();
-            this.catalogView.getSearchCatalogWindow().reset();
+            this.catalogController.getCatalogView().getSearchCatalogWindow().activate();
+            this.catalogController.getCatalogView().getSearchCatalogWindow().reset();
         } else if (evt.getSource() == this.interfaceView.getMainMenuWindow().getAddCourseButton()) {
             // Open the add course window
             this.interfaceView.getMainMenuWindow().deactivate();
-            this.studentView.getAddCourseWindow().activate();
-            this.studentView.getAddCourseWindow().reset(this.catalogController.getCatalog());
+            this.studentController.getStudentView().getAddCourseWindow().activate();
+            this.studentController.getStudentView().getAddCourseWindow().reset(this.catalogController.getCatalog());
         } else if (evt.getSource() == this.interfaceView.getMainMenuWindow().getRemoveCourseButton()) {
             // Open the remove course window
             this.interfaceView.getMainMenuWindow().deactivate();
-            this.studentView.getRemoveCourseWindow().activate();
-            this.studentView.getRemoveCourseWindow().reset(this.studentController.getStudent());
+            this.studentController.getStudentView().getRemoveCourseWindow().activate();
+            this.studentController.getStudentView().getRemoveCourseWindow().reset(this.studentController.getStudent());
         } else if (evt.getSource() == this.interfaceView.getMainMenuWindow().getViewCatalogButton()) {
             // Open the view course catalog window
             this.interfaceView.getMainMenuWindow().deactivate();
-            this.catalogView.getViewCatalogWindow().activate();
-            this.catalogView.getViewCatalogWindow().reset(this.catalogController.getCatalog());
+            this.catalogController.getCatalogView().getViewCatalogWindow().activate();
+            this.catalogController.getCatalogView().getViewCatalogWindow().reset(this.catalogController.getCatalog());
         } else if (evt.getSource() == this.interfaceView.getMainMenuWindow().getViewCoursesButton()) {
             // Open the view registered courses window
             this.interfaceView.getMainMenuWindow().deactivate();
-            this.studentView.getViewCoursesWindow().activate();
-            this.studentView.getViewCoursesWindow().reset(this.studentController.getStudent());
+            this.studentController.getStudentView().getViewCoursesWindow().activate();
+            this.studentController.getStudentView().getViewCoursesWindow().reset(this.studentController.getStudent());
         } else if (evt.getSource() == this.interfaceView.getMainMenuWindow().getQuitButton()) {
             // Close the program
             System.exit(0);

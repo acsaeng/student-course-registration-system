@@ -41,13 +41,12 @@ public class StudentController implements ActionListener {
      * Constructor to initialize the catalog controller
      * @param catalogController Controller for the associated catalog objects
      * @param interfaceView View for the main menu window
-     * @param studentView Views for the associated student windows
      */
-    public StudentController(CatalogController catalogController, InterfaceView interfaceView, StudentView studentView) {
+    public StudentController(CatalogController catalogController, InterfaceView interfaceView) {
         this.student = new Student();
         this.catalogController = catalogController;
         this.interfaceView = interfaceView;
-        this.studentView = studentView;
+        this.studentView = new StudentView();
 
         // Add action listeners to the student views
         this.studentView.getAddCourseWindow().addActionListeners(this);
@@ -183,5 +182,13 @@ public class StudentController implements ActionListener {
      */
     public Student getStudent() {
         return this.student;
+    }
+
+    /**
+     * Getter that retrieves the student view
+     * @return the student view
+     */
+    public StudentView getStudentView() {
+        return studentView;
     }
 }
