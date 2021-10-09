@@ -1,6 +1,6 @@
 package Controller;
 
-import View.*;
+import View.InterfaceView;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;

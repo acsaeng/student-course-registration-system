@@ -17,7 +17,9 @@ import java.awt.*;
  */
 public class ViewCoursesFrame extends JFrame {
 
-
+    /**
+     * Text area to display the registered course information
+     */
     JTextArea registeredCoursesInfoArea;
 
     /**
@@ -80,28 +82,38 @@ public class ViewCoursesFrame extends JFrame {
     }
 
     /**
-     * Enables visibility of the login frame
+     * Opens the view registered courses frame
      */
     public void activate() {
         this.setVisible(true);
     }
 
     /**
-     * Closes the main menu frame
+     * Closes the view registered courses frame
      */
     public void deactivate() {
         this.dispose();
     }
 
+    /**
+     * Resets the view registered courses frame
+     */
     public void reset(Student student) {
         this.displayRegisteredCourses(student);
     }
 
-
+    /**
+     * Adds action listeners to the controller
+     * @param controller student controller controlling the frame
+     */
     public void addActionListeners(StudentController controller) {
         this.mainMenuButton.addActionListener(controller);
     }
 
+    /**
+     * Displays the registered course in the text area
+     * @param student
+     */
     public void displayRegisteredCourses(Student student) {
         // Print all the courses the student is currently registered in
         if (student.getRegisteredCourses().size() == 0) {
@@ -117,6 +129,10 @@ public class ViewCoursesFrame extends JFrame {
         }
     }
 
+    /**
+     * Getter that retrieves the main menu button
+     * @return the main menu button
+     */
     public JButton getMainMenuButton() {
         return mainMenuButton;
     }

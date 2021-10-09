@@ -1,20 +1,17 @@
 package View.Frames;
 
-import Controller.CatalogController;
 import Controller.InterfaceController;
 
 import javax.swing.*;
 import javax.swing.border.EmptyBorder;
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 
 /**
  * A main menu frame to select an option in the registration system.
  *
  * @author Aron Saengchan
  * @version 1.0
- * @since October 3rd, 2021
+ * @since October 2nd, 2021
  */
 public class MainMenuFrame extends JFrame {
 
@@ -106,7 +103,8 @@ public class MainMenuFrame extends JFrame {
     }
 
     /**
-     * Enables visibility of the main menu frame
+     * Opens the main menu frame
+     * Opens the main menu frame
      */
     public void activate() {
         this.setVisible(true);
@@ -129,32 +127,50 @@ public class MainMenuFrame extends JFrame {
         this.quitButton.addActionListener(controller);
     }
 
-
-
-
-
-
-
+    /**
+     * Getter that retrieves the search catalog button
+     * @return the search catalog button
+     */
     public JButton getSearchCatalogButton() {
         return searchCatalogButton;
     }
 
+    /**
+     * Getter that retrieves the add course button
+     * @return the add catalog button
+     */
     public JButton getAddCourseButton() {
         return addCourseButton;
     }
 
+    /**
+     * Getter that retrieves the remove course button
+     * @return the remove catalog button
+     */
     public JButton getRemoveCourseButton() {
         return removeCourseButton;
     }
 
+    /**
+     * Getter that retrieves the view course catalog button
+     * @return the view course catalog button
+     */
     public JButton getViewCatalogButton() {
         return viewCatalogButton;
     }
 
+    /**
+     * Getter that retrieves the view registered courses button
+     * @return the view registered courses button
+     */
     public JButton getViewCoursesButton() {
         return viewCoursesButton;
     }
 
+    /**
+     * Getter that retrieves the quit button
+     * @return the quit button
+     */
     public JButton getQuitButton() {
         return quitButton;
     }

@@ -11,7 +11,7 @@ import java.awt.*;
  *
  * @author Aron Saengchan
  * @version 1.0
- * @since October 3rd, 2021
+ * @since October 2nd, 2021
  */
 public class SearchCatalogFrame extends JFrame {
 
@@ -119,58 +119,90 @@ public class SearchCatalogFrame extends JFrame {
     }
 
     /**
-     * Enables visibility of the login frame
+     * Opens the search catalog frame
      */
     public void activate() {
         this.setVisible(true);
     }
 
     /**
-     * Closes the main menu frame
+     * Closes the search catalog frame
      */
     public void deactivate() {
         this.dispose();
     }
 
+    /**
+     * Resets the search catalog frame
+     */
     public void reset() {
         this.courseNameTextField.setText("");
         this.courseNumTextField.setText("");
         this.courseInfoArea.setText("");
     }
 
+    /**
+     * Adds action listeners to the controller
+     * @param controller catalog controller controlling the frame
+     */
     public void addActionListeners(CatalogController controller) {
         this.searchButton.addActionListener(controller);
         this.mainMenuButton.addActionListener(controller);
     }
 
+    /**
+     * Displays a dialog box that communicates that the course could not be found
+     */
     public void showNullCourseDialog() {
         String message = "Course could not be found.";
         JOptionPane.showMessageDialog(new JFrame(), message, "Error", JOptionPane.ERROR_MESSAGE);
     }
 
+    /**
+     * Displays a dialog box that communicates an invalid input in the course code
+     */
     public void showInvalidInputErrorDialog() {
         String message = "Course name must contain 4 letters and course number must contain 3 numbers.";
         JOptionPane.showMessageDialog(new JFrame(), message, "Error", JOptionPane.ERROR_MESSAGE);
     }
 
+    /**
+     * Getter that retrieves the course name text field
+     * @return the course name text field
+     */
     public JTextField getCourseNameTextField() {
         return this.courseNameTextField;
     }
 
+    /**
+     * Getter that retrieves the course number text field
+     * @return the course number text field
+     */
     public JTextField getCourseNumTextField() {
         return this.courseNumTextField;
     }
 
+    /**
+     * Getter that retrieves the search button
+     * @return the search button
+     */
     public JButton getSearchButton() {
         return this.searchButton;
     }
 
+    /**
+     * Getter that retrieves the course info text area
+     * @return the course info text area
+     */
     public JTextArea getCourseInfoArea() {
         return this.courseInfoArea;
     }
 
+    /**
+     * Getter that retrieves the main menu button
+     * @return the main menu button
+     */
     public JButton getMainMenuButton() {
         return this.mainMenuButton;
     }
 }
-

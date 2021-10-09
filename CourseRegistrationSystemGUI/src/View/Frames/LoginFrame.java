@@ -5,8 +5,6 @@ import Controller.InterfaceController;
 import javax.swing.*;
 import javax.swing.border.EmptyBorder;
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 
 /**
  * A login frame to register students into the system.
@@ -87,11 +85,10 @@ public class LoginFrame extends JFrame {
     }
 
     /**
-     * Enables visibility of the login frame
+     * Opens the login frame
      */
     public void activate() {
         this.setVisible(true);
-
     }
 
     /**
@@ -101,32 +98,43 @@ public class LoginFrame extends JFrame {
         this.dispose();
     }
 
+    /**
+     * Adds action listeners to the controller
+     * @param controller interface controller controlling the frame
+     */
     public void addActionListeners(InterfaceController controller) {
         this.loginButton.addActionListener(controller);
     }
 
+    /**
+     * Displays a dialog box that communicates a student ID input error
+     */
     public void showInvalidInputErrorDialog() {
         String message = "Student ID must only contain numbers.";
         JOptionPane.showMessageDialog(new JFrame(), message, "Error", JOptionPane.ERROR_MESSAGE);
     }
 
-
-
-
-
-
-
-
+    /**
+     * Getter that retrieves the name text field
+     * @return the name text field
+     */
     public String getName() {
         return this.nameField.getText();
     }
 
+    /**
+     * Getter that retrieves the student ID text field
+     * @return the student ID text field
+     */
     public String getStudentId() {
         return this.studentIdField.getText();
     }
 
+    /**
+     * Getter that retrieves the login button
+     * @return the login button
+     */
     public JButton getLoginButton() {
         return this.loginButton;
     }
-
 }

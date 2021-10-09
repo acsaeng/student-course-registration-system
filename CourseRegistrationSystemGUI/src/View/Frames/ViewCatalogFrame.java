@@ -6,10 +6,7 @@ import Model.CourseCatalog;
 
 import javax.swing.*;
 import javax.swing.border.EmptyBorder;
-import javax.xml.catalog.Catalog;
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.util.ArrayList;
 
 /**
@@ -17,7 +14,7 @@ import java.util.ArrayList;
  *
  * @author Aron Saengchan
  * @version 1.0
- * @since October 3rd, 2021
+ * @since October 2nd, 2021
  */
 public class ViewCatalogFrame extends JFrame {
 
@@ -26,7 +23,9 @@ public class ViewCatalogFrame extends JFrame {
      */
     private JComboBox<String> courseNameComboBox;
 
-
+    /**
+     * Text area to display the catalog information
+     */
     private JTextArea catalogInfoArea;
 
     /**
@@ -62,7 +61,7 @@ public class ViewCatalogFrame extends JFrame {
         // Insert frame header
         JLabel frameHeader = new JLabel("View Course Catalog");
         frameHeader.setFont(new Font("Arial", Font.BOLD, 18));
-        gbc.insets = new Insets(0, 0, 20,0);
+        gbc.insets = new Insets(0, 0, 15,0);
         viewCatalogPanel.add(frameHeader, gbc);
 
         // Insert the course name label
@@ -80,12 +79,12 @@ public class ViewCatalogFrame extends JFrame {
         viewCatalogPanel.add(this.courseNameComboBox, gbc);
 
         // Insert the catalog information text area
-        this.catalogInfoArea = new JTextArea(16, 25);
+        this.catalogInfoArea = new JTextArea(17, 25);
         this.catalogInfoArea.setFont(new Font("Arial", Font.PLAIN, 12));
         this.catalogInfoArea.setBorder(BorderFactory.createLineBorder(Color.BLACK));
         this.catalogInfoArea.setEditable(false);
         gbc.gridy++;
-        gbc.insets = new Insets(0, 0, 20,0);
+        gbc.insets = new Insets(0, 0, 15,0);
         viewCatalogPanel.add(this.catalogInfoArea, gbc);
 
         // Insert the main menu button
@@ -96,14 +95,14 @@ public class ViewCatalogFrame extends JFrame {
     }
 
     /**
-     * Enables visibility of the login frame
+     * Opens the view course catalog frame
      */
     public void activate() {
         this.setVisible(true);
     }
 
     /**
-     * Closes the main menu frame
+     * Closes the view course catalog frame
      */
     public void deactivate() {
         this.dispose();
@@ -115,11 +114,19 @@ public class ViewCatalogFrame extends JFrame {
         this.catalogInfoArea.setText(null);
     }
 
+    /**
+     * Adds action listeners to the controller
+     * @param controller catalog controller controlling the frame
+     */
     public void addActionListeners(CatalogController controller) {
         this.courseNameComboBox.addActionListener(controller);
         this.mainMenuButton.addActionListener(controller);
     }
 
+    /**
+     * Refreshes the course name combo box
+     * @param catalog a course catalog
+     */
     public void refreshCourseNameComboBox(CourseCatalog catalog) {
         ArrayList<String> courseNames = new ArrayList<>();
 
@@ -132,14 +139,26 @@ public class ViewCatalogFrame extends JFrame {
         }
     }
 
+    /**
+     * Getter that retrieves the course name combo box
+     * @return the course name combo box
+     */
     public JComboBox getCourseNameComboBox() {
         return courseNameComboBox;
     }
 
+    /**
+     * Getter that retrieves the catalog info text area
+     * @return the course name combo box
+     */
     public JTextArea getCatalogInfoArea() {
         return catalogInfoArea;
     }
 
+    /**
+     * Getter that retrieves the main menu button
+     * @return the main menu button
+     */
     public JButton getMainMenuButton() {
         return mainMenuButton;
     }

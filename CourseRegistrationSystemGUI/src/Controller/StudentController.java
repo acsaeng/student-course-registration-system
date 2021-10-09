@@ -148,7 +148,7 @@ public class StudentController implements ActionListener {
         boolean isEligible = false;
 
         //  Check each requirement and display dialog if student is ineligible
-        if (this.student.verifyCompletedCourses(course)) {
+        if (this.student.verifyCompletedCourse(course)) {
             this.studentView.getAddCourseWindow().showCompletedCourseErrorDialog();
         } else if (!this.student.verifyPrereqRequirements(course)) {
             this.studentView.getAddCourseWindow().showPrereqErrorDialog();

@@ -2,10 +2,21 @@ package Model;
 
 import java.util.ArrayList;
 
+/**
+ * A database that stores the university course and student information.
+ *
+ * @author Aron Saengchan
+ * @version 1.0
+ * @since October 2nd, 2021
+ */
 public class Database {
 
+    /**
+     * Loads the catalog courses into a list
+     * @return a list containing the catalog database
+     */
     public static ArrayList<Course> loadCatalogDatabase() {
-        ArrayList<Course> courseDatabase = new ArrayList<>();
+        ArrayList<Course> catalogDatabase = new ArrayList<>();
 
         // Define courses and add prerequisite requirements
         Course acct217 = new Course("ACCT", 217);
@@ -46,34 +57,39 @@ public class Database {
         phys259.addPrereq(math275);
 
         // Add courses to the database
-        courseDatabase.add(acct217);
-        courseDatabase.add(acct323);
-        courseDatabase.add(chem201);
-        courseDatabase.add(chem213);
-        courseDatabase.add(math211);
-        courseDatabase.add(math275);
-        courseDatabase.add(math277);
-        courseDatabase.add(engg201);
-        courseDatabase.add(engg202);
-        courseDatabase.add(engg311);
-        courseDatabase.add(engg349);
-        courseDatabase.add(phys221);
-        courseDatabase.add(phys259);
+        catalogDatabase.add(acct217);
+        catalogDatabase.add(acct323);
+        catalogDatabase.add(chem201);
+        catalogDatabase.add(chem213);
+        catalogDatabase.add(math211);
+        catalogDatabase.add(math275);
+        catalogDatabase.add(math277);
+        catalogDatabase.add(engg201);
+        catalogDatabase.add(engg202);
+        catalogDatabase.add(engg311);
+        catalogDatabase.add(engg349);
+        catalogDatabase.add(phys221);
+        catalogDatabase.add(phys259);
 
         // Create section offerings for each course in the database
-        for(Course course: courseDatabase) {
+        for(Course course: catalogDatabase) {
             // Generate 1 to 4 sections for each course
             int numOfferings = (int) (Math.random() * 4 + 1);
 
             for(int i = 1; i <= numOfferings; i++) {
                 // Create section with a capacity of 25 to 100 students
-                course.addOffering(new CourseSection(course, i, (int) (Math.random() * 76 + 25)));
+                course.addOffering(new CourseSection(course, i, (int) (Math.random() * 75 + 25)));
             }
         }
 
-        return courseDatabase;
+        return catalogDatabase;
     }
 
+    /**
+     * Loads the registration information of each student into the courses
+     * @param catalogDatabase a list containing the catalog database
+     * @return the updated catalog database with student registrations
+     */
     public static ArrayList<Course> loadRegistrationDatabase(ArrayList<Course> catalogDatabase) {
         ArrayList<Student> studentList = new ArrayList<>();
 
@@ -93,6 +109,10 @@ public class Database {
         return catalogDatabase;
     }
 
+    /**
+     * Generates a list of completed courses completed by the student user
+     * @return a list of courses completed by the student
+     */
     public static ArrayList<Course> generateUserCompletedCourses() {
         ArrayList<Course> completedCourses = new ArrayList<Course>();
 

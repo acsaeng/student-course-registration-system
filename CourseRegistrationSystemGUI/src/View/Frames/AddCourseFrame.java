@@ -1,6 +1,5 @@
 package View.Frames;
 
-import Controller.CatalogController;
 import Controller.StudentController;
 import Model.Course;
 import Model.CourseCatalog;
@@ -8,8 +7,6 @@ import Model.CourseCatalog;
 import javax.swing.*;
 import javax.swing.border.EmptyBorder;
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.util.ArrayList;
 
 /**
@@ -17,7 +14,7 @@ import java.util.ArrayList;
  *
  * @author Aron Saengchan
  * @version 1.0
- * @since October 3rd, 2021
+ * @since October 2nd, 2021
  */
 public class AddCourseFrame extends JFrame {
 
@@ -133,19 +130,22 @@ public class AddCourseFrame extends JFrame {
     }
 
     /**
-     * Enables visibility of the login frame
+     * Opens the add course frame
      */
     public void activate() {
         this.setVisible(true);
     }
 
     /**
-     * Closes the main menu frame
+     * Closes the add course frame
      */
     public void deactivate() {
         this.dispose();
     }
 
+    /**
+     * Resets the add course frame
+     */
     public void reset(CourseCatalog catalog) {
         this.courseNameComboBox.removeAllItems();
         this.courseNumComboBox.removeAllItems();
@@ -162,6 +162,10 @@ public class AddCourseFrame extends JFrame {
         }
     }
 
+    /**
+     * Adds action listeners to the controller
+     * @param controller student controller controlling the frame
+     */
     public void addActionListeners(StudentController controller) {
         this.courseNameComboBox.addActionListener(controller);
         this.courseNumComboBox.addActionListener(controller);
@@ -169,9 +173,14 @@ public class AddCourseFrame extends JFrame {
         this.mainMenuButton.addActionListener(controller);
     }
 
+    /**
+     * Refreshes the course number combo box
+     * @param catalog a course catalog containing all the offered courses
+     */
     public void refreshCourseNumComboBox(CourseCatalog catalog) {
         this.courseNumComboBox.removeAllItems();
 
+        // Update the course number combo box from the catalog
         for (Course course : catalog.getCourseList()) {
             if (course.getCourseName().equals(this.courseNameComboBox.getSelectedItem())) {
                 this.courseNumComboBox.addItem(course.getCourseNum());
@@ -179,9 +188,14 @@ public class AddCourseFrame extends JFrame {
         }
     }
 
+    /**
+     * Refreshes the course section combo box
+     * @param catalog a course catalog containing all the offered courses
+     */
     public void refreshCourseSectionComboBox(CourseCatalog catalog) {
         this.courseSectionComboBox.removeAllItems();
 
+        // Update the course section combo box from the catalog
         for (Course course: catalog.getCourseList()) {
             if (course.toString().equals(this.courseNameComboBox.getSelectedItem() + " " + this.courseNumComboBox.getSelectedItem())) {
                 for (int i = 0; i < course.getSections().size(); i++) {
@@ -192,67 +206,98 @@ public class AddCourseFrame extends JFrame {
         }
     }
 
+    /**
+     * Displays a dialog box that communicates a successful registration
+     */
     public void showSuccessfulRegistrationDialog() {
         String message = "Successfully registered!";
         JOptionPane.showMessageDialog(new JFrame(), message);
     }
 
+    /**
+     * Displays a dialog box that communicates a possible course cancellation
+     */
     public void showCourseCancellationWarningDialog() {
         String message = "Courses with less than 8 students may be subject to cancellation.";
         JOptionPane.showMessageDialog(new JFrame(), message, "Warning", JOptionPane.WARNING_MESSAGE);
     }
 
+    /**
+     * Displays a dialog box that communicates that a user has already completed a course
+     */
     public void showCompletedCourseErrorDialog() {
         String message = "You have already completed this course.";
         JOptionPane.showMessageDialog(new JFrame(), message, "Error", JOptionPane.ERROR_MESSAGE);
     }
 
+    /**
+     * Displays a dialog box that communicates that a user has not met the prerequisite requirements
+     */
     public void showPrereqErrorDialog() {
         String message = "You have not completed the prerequisites to enroll in this course.";
         JOptionPane.showMessageDialog(new JFrame(), message, "Error", JOptionPane.ERROR_MESSAGE);
     }
 
+    /**
+     * Displays a dialog box that communicates that a user is already registered in a course
+     */
     public void showExistingRegistrationErrorDialog() {
         String message = "You are already enrolled in this course.";
         JOptionPane.showMessageDialog(new JFrame(), message, "Error", JOptionPane.ERROR_MESSAGE);
     }
 
+    /**
+     * Displays a dialog box that communicates that a course section is full
+     */
     public void showFullCourseErrorDialog() {
         String message = "This course section is full.";
         JOptionPane.showMessageDialog(new JFrame(), message, "Error", JOptionPane.ERROR_MESSAGE);
     }
 
+    /**
+     * Displays a dialog box that communicates that a user is enrolled in the maximum number of courses
+     */
     public void showMaxEnrollmentErrorDialog() {
         String message = "You are already enrolled in the maximum number of courses.";
         JOptionPane.showMessageDialog(new JFrame(), message, "Error", JOptionPane.ERROR_MESSAGE);
     }
 
-
-
-
-
-
-
-
-
-
-
+    /**
+     * Getter that retrieves the course name combo box
+     * @return the course name combo box
+     */
     public JComboBox getCourseNameComboBox() {
         return courseNameComboBox;
     }
 
+    /**
+     * Getter that retrieves the course number combo box
+     * @return the course number combo box
+     */
     public JComboBox getCourseNumComboBox() {
         return courseNumComboBox;
     }
 
+    /**
+     * Getter that retrieves the course section combo box
+     * @return the course section combo box
+     */
     public JComboBox getCourseSectionComboBox() {
         return courseSectionComboBox;
     }
 
+    /**
+     * Getter that retrieves the add course button
+     * @return the add course button
+     */
     public JButton getAddCourseButton() {
         return addCourseButton;
     }
 
+    /**
+     * Getter that retrieves the main menu button
+     * @return the main menu button
+     */
     public JButton getMainMenuButton() {
         return mainMenuButton;
     }

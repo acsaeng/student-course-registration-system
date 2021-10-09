@@ -1,24 +1,19 @@
 package View.Frames;
 
 import Controller.StudentController;
-import Model.Course;
-import Model.CourseCatalog;
 import Model.Registration;
 import Model.Student;
 
 import javax.swing.*;
 import javax.swing.border.EmptyBorder;
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.util.ArrayList;
 
 /**
  * A remove course frame to remove a student course.
  *
  * @author Aron Saengchan
  * @version 1.0
- * @since October 3rd, 2021
+ * @since October 2nd, 2021
  */
 public class RemoveCourseFrame extends JFrame {
 
@@ -96,14 +91,14 @@ public class RemoveCourseFrame extends JFrame {
     }
 
     /**
-     * Enables visibility of the login frame
+     * Opens the remove course frame
      */
     public void activate() {
         this.setVisible(true);
     }
 
     /**
-     * Closes the main menu frame
+     * Closes the remove course
      */
     public void deactivate() {
         this.dispose();
@@ -114,14 +109,23 @@ public class RemoveCourseFrame extends JFrame {
         this.refreshCourseComboBox(student);
     }
 
+    /**
+     * Adds action listeners to the controller
+     * @param controller student controller controlling the frame
+     */
     public void addActionListeners(StudentController controller) {
         this.removeCourseButton.addActionListener(controller);
         this.mainMenuButton.addActionListener(controller);
 
     }
 
+    /**
+     * Refreshes the course combo box
+     * @param student the student containing the registered courses
+     */
     public void refreshCourseComboBox(Student student) {
         if (student.getRegisteredCourses().size() == 0) {
+            // Show dialog if student is not registered in any courses
             this.showNoCoursesErrorDialog();
             this.getCourseComboBox().setEnabled(false);
             this.getRemoveCourseButton().setEnabled(false);
@@ -135,24 +139,42 @@ public class RemoveCourseFrame extends JFrame {
         }
     }
 
+    /**
+     * Displays a dialog box that communicates that the user is not registered in any courses
+     */
     public void showNoCoursesErrorDialog() {
         String message = "No courses to remove.";
         JOptionPane.showMessageDialog(new JFrame(), message, "Warning", JOptionPane.WARNING_MESSAGE);
     }
 
+    /**
+     * Displays a dialog box that communicates that a course has been successfully removed
+     */
     public void showSuccessfulRegistrationRemovalDialog() {
         String message = "Successfully removed!";
         JOptionPane.showMessageDialog(new JFrame(), message);
     }
 
+    /**
+     * Getter that retrieves the course combo box
+     * @return the course combo box
+     */
     public JComboBox<String> getCourseComboBox() {
         return courseComboBox;
     }
 
+    /**
+     * Getter that retrieves the remove course button
+     * @return the remove course button
+     */
     public JButton getRemoveCourseButton() {
         return removeCourseButton;
     }
 
+    /**
+     * Getter that retrieves the main menu button
+     * @return the main menu button
+     */
     public JButton getMainMenuButton() {
         return mainMenuButton;
     }
